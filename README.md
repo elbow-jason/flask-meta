@@ -4,11 +4,11 @@ flask-meta
 Using a Flask app to make more Flask apps. So meta.
 
 
-#####Then and Now
+####Then and Now
    + Then: Chickens make eggs. Eggs make chickens.
    + Now: Flask makes apps. Apps make... apps... (that was not a good analogy)
 
-#####Quick Start
+####Quick Start
 
 1. Make a virtualenv for your meta app: 
    + `$ virtualenv my_appmeta`
