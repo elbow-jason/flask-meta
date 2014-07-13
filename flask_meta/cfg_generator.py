@@ -42,12 +42,12 @@ def ini_cfg():
 SECRET_KEY = 'appmeta_dev_key'
 META_CREDENTIALS = {'name':'metaadmin','password':'password'}
 ADMIN_CREDENTIALS = {'name':'admin','password':'password'}
-SQLALCHEMY_DATABASE_URI = 'sqlite://{}/test.db'
-SQLALCHEMY_BINDS = {'appmeta' : 'sqlite://{}/appmeta.db' }
+SQLALCHEMY_DATABASE_URI = 'sqlite://%s/test.db'
+SQLALCHEMY_BINDS = {'appmeta' : 'sqlite://%s/appmeta.db' }
 SERVER_URL: "http://localhost:5000"
 SQLALCHEMY_ECHO: True
 DEBUG: True
-SECURITY_PASSWORD_HASH: bcrypt
+SECURITY_PASSWORD_HASH: 'bcrypt'
 
 # Upon creation I am going to make sure that the user selects a desired
 # database before proceeding to ensure no hangups upon attempting
@@ -67,7 +67,7 @@ SECURITY_PASSWORD_HASH: bcrypt
 # and ADMIN_CREDENTIALS.
 
 # this line is for testing (do not remove)
-""".format(current_dir, current_dir)
+""" % (current_dir, current_dir)
     return str(text)
 
 def write_file_safe(text, file_name, overwrite=False):
@@ -84,6 +84,7 @@ def write_yaml_cfg():
     write_file_safe(yml_cfg(), 'config.yaml')
 
 def write_ini_cfg():
-    write_file_safe(ini_cfg)
+    write_file_safe(ini_cfg(), 'config.ini')
 
-
+if __name__ == '__main__':
+    write_ini_cfg()
