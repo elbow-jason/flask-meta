@@ -26,8 +26,7 @@ def config_app(app):
         The flask app is passed immediately after it is declared/initialized
         (e.g. 'project', 'appmeta', etc.)
     """
-    for key in config.keys():
-        app.config[key] = config[key]
+    config.config_app_from_file(app)
     return app
 
 
