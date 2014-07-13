@@ -23,11 +23,18 @@ def config_app(app):
     properly.
 
     :params: app
-        The flask app is passed immediately after it is declared/initialized(e.g. 'project', 'appmeta', etc.)
+        The flask app is passed immediately after it is declared/initialized
+        (e.g. 'project', 'appmeta', etc.)
     """
     for key in config.keys():
         app.config[key] = config[key]
     return app
 
-
+def create_app():
+    """
+    Using the previous functions, creates the app, adds extensions to the app, and returns the app and 
+    extension variables.
+    """
+    app = init_app()
+    app = config_app(app)
 
