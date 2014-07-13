@@ -37,4 +37,6 @@ def create_app():
     """
     app = init_app()
     app = config_app(app)
+    return app
 
+app = create_app()
