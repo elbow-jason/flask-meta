@@ -1,7 +1,5 @@
 import os
-from flask_meta.config.config_parse import get_config, extract_config
 from ConfigParser import SafeConfigParser
-
 
 def config_app_from_file(app):
     generate_default_config()
@@ -23,7 +21,7 @@ def print_config(parser):
 
 def get_config():
     #return parse_config('config.ini')
-    c = parse_config('config.ini')
+    c = parse_config('/../../config.ini')
     print_config(c)
     return c
 
