@@ -77,9 +77,10 @@ def write_file_safe(text, file_name, overwrite=False):
             new_file.write(text)
             new_file.close()
         else:
-            print "The file '{}' already exists. To overwrite\
-                pass overwrite=True as a kwarg.".format(file_name)
-            print "No action taken."
+            print """\
+The file '{}' already exists.
+To overwrite '{}' pass overwrite=True as a kwarg.
+No action taken.""".format(file_name, file_name)
 
 def write_yaml_cfg():
     write_file_safe(yml_cfg(), 'config.yaml')
