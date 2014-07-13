@@ -2,7 +2,6 @@ import os
 from ConfigParser import SafeConfigParser
 
 def config_app_from_file(app):
-    generate_default_config()
     parsed_cfg = get_config()
     return extract_config(app, parsed_cfg,'appmeta_config')
 
@@ -21,13 +20,14 @@ def print_config(parser):
 
 def get_config():
     #return parse_config('config.ini')
-    c = parse_config('/../../config.ini')
+    c = parse_config('config.ini')
     print_config(c)
     return c
 
 def extract_config(app_obj, parser, section_name):
     for name, value in parser.items(section_name):
-        app_obj[name] = value
+        app_obj.config[name.upper()] = value
+        print name.upper()
     return app_obj
 
 
