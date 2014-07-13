@@ -27,7 +27,6 @@ def get_config():
 def extract_config(app_obj, parser, section_name):
     for name, value in parser.items(section_name):
         app_obj.config[name.upper()] = value
-        print name.upper()
     return app_obj
 
 
