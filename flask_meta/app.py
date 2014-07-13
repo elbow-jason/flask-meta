@@ -30,6 +30,7 @@ def config_app(app):
         app.config[key] = config[key]
     return app
 
+
 def create_app():
     """
     Using the previous functions, creates the app, adds extensions to the app, and returns the app and 
