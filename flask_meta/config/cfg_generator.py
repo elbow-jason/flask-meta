@@ -77,8 +77,7 @@ def write_file_safe(text, file_name, overwrite=False):
             new_file.write(text)
             new_file.close()
         else:
-            print """\
-The file '{}' already exists.
+            print """The file '{}' already exists.
 To overwrite '{}' pass overwrite=True as a kwarg.
 No action taken.""".format(file_name, file_name)
 

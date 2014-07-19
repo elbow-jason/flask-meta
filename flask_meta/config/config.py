@@ -5,7 +5,7 @@ def config_app_from_file(app):
     parsed_cfg = get_config()
     return extract_config(app, parsed_cfg,'appmeta_config')
 
-def parse_config(file_name):
+def parse_ini_file(file_name):
     parser = SafeConfigParser()
     parser.read(file_name)
     return parser
@@ -19,10 +19,10 @@ def print_config(parser):
         print '\n'
 
 def get_config():
-    #return parse_config('config.ini')
-    c = parse_config('config.ini')
-    print_config(c)
-    return c
+    return parse_ini_file('config.ini')
+    #c = parse_config('config.ini')
+    #print_config(c)
+    #return c
 
 def extract_config(app_obj, parser, section_name):
     for name, value in parser.items(section_name):

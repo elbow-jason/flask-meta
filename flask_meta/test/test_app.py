@@ -1,5 +1,5 @@
 from flask_meta.app import init_app, config_app
-from flask_meta.config import config
+from flask_meta.config.configw import config
 
 def test_init_app():
     app = init_app()
