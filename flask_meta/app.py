@@ -2,13 +2,11 @@
 
 """
 This is the app that the appmeta will be run from.
-
 """
 
 from flask import Flask as Flask
 from flask.ext import admin, login, sqlalchemy
 from flask_meta.config import config
-
 
 def init_app(app_name=__name__):
     """
@@ -26,17 +24,30 @@ def config_app(app):
         The flask app is passed immediately after it is declared/initialized
         (e.g. 'project', 'appmeta', etc.)
     """
-    config.config_app_from_file(app)
+    config.config_app_from_file(app, 'config.ini')
     return app
+
+def init_db(app):
+    """
+    Initializes sqlalchemy with the flask app after the app is configured.
+
+    :params: app
+        The flask app is passed immediately after it is declared/initialized
+        (e.g. 'project', 'appmeta', etc.)
+    """
+    return sqlalchemy.SQLAlchemy(app)
 
 
 def create_app():
     """
-    Using the previous functions, creates the app, adds extensions to the app, and returns the app and 
-    extension variables.
+    Using the previous functions, creates the app, adds extensions to the
+    app, and returns the app and extension variables.
     """
+    
     app = init_app()
     app = config_app(app)
-    return app
+    db  = init_db(app)
+    return app, db
 
-app = create_app()
+(app, db) = create_app()
+

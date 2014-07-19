@@ -1,8 +1,8 @@
 import os
 from ConfigParser import SafeConfigParser
 
-def config_app_from_file(app):
-    parsed_cfg = get_config()
+def config_app_from_file(app, file_name):
+    parsed_cfg = get_config(file_name)
     return extract_config(app, parsed_cfg,'appmeta_config')
 
 def parse_ini_file(file_name):
@@ -18,8 +18,8 @@ def print_config(parser):
             print '  %s = %s' % (name, value)
         print '\n'
 
-def get_config():
-    return parse_ini_file('config.ini')
+def get_config(file_name):
+    return parse_ini_file(file_name)
     #c = parse_config('config.ini')
     #print_config(c)
     #return c
