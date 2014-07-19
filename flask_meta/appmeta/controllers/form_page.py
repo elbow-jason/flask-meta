@@ -8,6 +8,6 @@ form_page = Blueprint('form_page', __name__,
 def show(page):
     try:
         form = AppForms.query.filter_by(name=page).first()
-        return render_template('form.html' form=form)
+        return render_template('form.html', form=form)
     except TemplateNotFound:
         abort(404)

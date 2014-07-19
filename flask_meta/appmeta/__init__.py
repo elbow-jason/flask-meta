@@ -1,12 +1,31 @@
 # -*- coding: utf-8 -*-
 
+
+ import os, sys, inspect
+ # realpath() will make your script run, even if you symlink it :)
+ cmd_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
+ if cmd_folder not in sys.path:
+     sys.path.insert(0, cmd_folder)
+
+ # use this if you want to include modules from a subfolder
+ cmd_subfolder = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe() ))[0],"subfolder")))
+ if cmd_subfolder not in sys.path:
+     sys.path.insert(0, cmd_subfolder)
+
 """
 This is the app that the appmeta will be run from.
 """
-
-from flask import Flask as Flask
+__name__ = 'appmeta'
+from flask import Flask as Flask, Module
 from flask.ext import admin, login, sqlalchemy
-from flask_meta.config import config
+from appmeta.config import config
+
+def init_flask_module(flask_module_name):
+    """
+    returns an initialized flask Module.
+    """
+    return Module(flask_module_name)
+
 
 def init_app(app_name=__name__):
     """
@@ -44,10 +63,10 @@ def create_app():
     app, and returns the app and extension variables.
     """
     
-    app = init_app()
-    app = config_app(app)
-    db  = init_db(app)
-    return app, db
+    mod = init_flask_module('appmeta')
+    mod = config_app(mod)
+    db  = init_db(mod)
+    return mod, db
 
-(app, db) = create_app()
+(appmeta, db) = create_app()
 

@@ -1,7 +1,7 @@
 import os
-from flask_meta.app import app
+from flask_meta import appmeta
 
-def run_app():
+def run_appmeta():
     """
     Runs the flask-meta appmeta server.
     """
@@ -10,7 +10,7 @@ def run_app():
     debug = True
     if debug:
         print ' * debug is active'
-    app.run(debug=debug, port=port, host=host)
+    appmeta.run(debug=debug, port=port, host=host)
 
 if __name__ == '__main__':
-    run_app()
+    run_appmeta()
